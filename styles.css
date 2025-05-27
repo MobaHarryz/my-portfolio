@@ -5,7 +5,22 @@
         color: aliceblue;
         box-sizing: border-box;
     }
-    
+
+    :root{
+        --primary-color: #00000C;
+        --secondary-color: #e2e2f3;
+    }
+
+    #icon{
+        width: 20px;
+        cursor: pointer;
+        display: inline-block;
+    }
+    nav ul{
+        flex: 1;
+        text-align: right;
+    }
+
     body {
         background: #00000C;
     }
@@ -25,6 +40,8 @@
         scroll-behavior: smooth;
     }
     /*MENU*/
+
+
     
     .contenedor-header {
         background: #00000C;
@@ -34,6 +51,8 @@
         left: 0;
         z-index: 99;
     }
+
+ 
     
     .contenedor-header header {
         max-width: 1400px;
@@ -65,7 +84,7 @@
     }
     
     .contenedor-header header nav ul li a:hover {
-        box-shadow: inset 100px 0 0 0 #54b3d6;
+        box-shadow: inset 100px 0 0 0 #F28705;
         width: 15%;
         transition: .5s;
         border-radius: 9px;
@@ -73,7 +92,7 @@
     }
     
     .nav-responsive {
-        background-color: #5BDCEB;
+        background-color: #F28705;
         color: aliceblue;
         padding: 5px 10px;
         border-radius: 5px;
@@ -145,7 +164,7 @@
     }
     
     .home .contenido-home .redes a:hover {
-        background-color: #5BDCEB;
+        background-color: #F28705;
     }
     /*SECCION S O B R E  M I*/
     
@@ -179,7 +198,7 @@
     
     .about .contenidoabout p span {
         font-family: 'Fuente Textos';
-        color: #5BDCEB;
+        color: #F28705;
         font-weight: bold;
     }
     
@@ -208,7 +227,7 @@
     
     .about .fila .col ul li strong {
         display: inline-block;
-        color: #5BDCEB;
+        color: #F28705;
         width: 130px;
         font-family: 'Fuente Textos';
     }
@@ -232,7 +251,7 @@
     }
     
     .about .fila .col .contenedor-gustos .gustos:hover {
-        background-color: #5d8c9b;
+        background-color: #F28705;
         transition: 1s;
     }
     
@@ -267,7 +286,7 @@
     }
     
     .about button:hover {
-        background-color: #5d8c9b;
+        background-color: #F28705;
         z-index: .1;
         transition: 1s;
     }
@@ -356,7 +375,7 @@
             width: 0%;
         }
         100% {
-            width: 65%;
+            width: 75%;
         }
     }
     
@@ -370,7 +389,7 @@
             width: 0%;
         }
         100% {
-            width: 55%;
+            width: 65%;
         }
     }
     
@@ -384,7 +403,7 @@
             width: 0%;
         }
         100% {
-            width: 65%;
+            width: 75%;
         }
     }
     
@@ -398,7 +417,21 @@
             width: 0%;
         }
         100% {
-            width: 45%;
+            width: 50%;
+        }
+    }
+    
+    .skills .skill .qatesting {
+        width: 0%;
+        animation: 2s qatesting forwards;
+    }
+    
+    @keyframes qatesting {
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 65%;
         }
     }
     
@@ -412,7 +445,7 @@
             width: 0%;
         }
         100% {
-            width: 40%;
+            width: 50%;
         }
     }
     
@@ -426,7 +459,7 @@
             width: 0%;
         }
         100% {
-            width: 40%;
+            width: 50%;
         }
     }
     
@@ -440,7 +473,7 @@
             width: 0%;
         }
         100% {
-            width: 75%;
+            width: 85%;
         }
     }
     
@@ -454,7 +487,7 @@
             width: 0%;
         }
         100% {
-            width: 65%;
+            width: 85%;
         }
     }
     
@@ -468,7 +501,7 @@
             width: 0%;
         }
         100% {
-            width: 75%;
+            width: 85%;
         }
     }
     
@@ -482,7 +515,7 @@
             width: 0%;
         }
         100% {
-            width: 75%;
+            width: 85%;
         }
     }
     
@@ -496,7 +529,7 @@
             width: 0%;
         }
         100% {
-            width: 80%;
+            width: 100%;
         }
     }
     
@@ -514,20 +547,6 @@
         }
     }
     
-    .skills .skill .proact {
-        width: 0%;
-        animation: 2s proact forwards;
-    }
-    
-    @keyframes proact {
-        0% {
-            width: 0%;
-        }
-        100% {
-            width: 80%;
-        }
-    }
-    
     .skills .skill .comunic {
         width: 0%;
         animation: 2s comunic forwards;
@@ -538,7 +557,7 @@
             width: 0%;
         }
         100% {
-            width: 90%;
+            width: 100%;
         }
     }
     
@@ -552,7 +571,21 @@
             width: 0%;
         }
         100% {
-            width: 70%;
+            width: 100%;
+        }
+    }
+
+    .skills .skill .proact {
+        width: 0%;
+        animation: 2s proact forwards;
+    }
+    
+    @keyframes proact {
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 100%;
         }
     }
     
@@ -566,7 +599,7 @@
             width: 0%;
         }
         100% {
-            width: 80%;
+            width: 100%;
         }
     }
     /*SECCION C U R R I C U L U M */
@@ -629,7 +662,7 @@
         font-family: 'Fuente Textos';
         position: relative;
         top: -25px;
-        color: #5BDCEB;
+        color: #F28705;
     }
     
     .curriculum .filac .item span {
@@ -734,7 +767,7 @@
         margin-bottom: 20px;
         transition: 1s;
         text-align: center;
-        color: #02735E;
+        color: #c27518;
     }
     
     .portfolio .gallery .proyecto .overlay p {
@@ -817,6 +850,7 @@
     
     .contact .fila {
         display: flex;
+        justify-content: center;
     }
     
     .contact .col {
@@ -871,20 +905,9 @@
         width: 100%;
     }
     
-    .contact .col .info {
-        position: absolute;
-        top: 36%;
-        background-color: #0b131f;
-        padding: 10px;
-        width: fit-content;
-        height: fit-content;
-        right: 19%;
-        transform: translate(-50, -50%);
-    }
-    
     .contact .col .info ul li {
         font-family: 'Fuente Textos';
-        margin-bottom: 10px;
+        margin-bottom: px;
     }
     
     .contact .col .info ul {
@@ -893,12 +916,6 @@
     
     .contact .col .info ul li {
         margin-bottom: 20px;
-    }
-    
-    .contact .col .info ul li i {
-        color: #5BDCEB;
-        display: inline-block;
-        margin-right: 12px;
     }
     /*F O O T E R*/
     

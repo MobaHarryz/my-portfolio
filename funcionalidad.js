@@ -26,18 +26,19 @@ function efectoSkills() {
         habilidades[1].classList.add("javascript");
         habilidades[2].classList.add("htmlcss");
         habilidades[3].classList.add("database");
-        habilidades[4].classList.add("backend");
-        habilidades[5].classList.add("cloud");
-        habilidades[6].classList.add("adobexd");
-        habilidades[7].classList.add("figma");
-        habilidades[8].classList.add("psd");
-        habilidades[9].classList.add("ai");
-        habilidades[10].classList.add("trabajo");
-        habilidades[11].classList.add("compromiso");
-        habilidades[12].classList.add("comunic");
-        habilidades[13].classList.add("dedicacion");
-        habilidades[14].classList.add("proact");
-        habilidades[15].classList.add("adapt");
+        habilidades[4].classList.add("qatesting");
+        habilidades[5].classList.add("backend");
+        habilidades[6].classList.add("cloud");
+        habilidades[7].classList.add("adobexd");
+        habilidades[8].classList.add("figma");
+        habilidades[9].classList.add("psd");
+        habilidades[10].classList.add("ai");
+        habilidades[11].classList.add("trabajo");
+        habilidades[12].classList.add("compromiso");
+        habilidades[13].classList.add("comunic");
+        habilidades[14].classList.add("dedicacion");
+        habilidades[15].classList.add("proact");
+        habilidades[16].classList.add("adapt");
     }
 }
 //detectar el scrollin para aplicar la animacion de la barra-skills
