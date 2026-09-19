@@ -1,0 +1,11 @@
+# Separate clone of github.com/MobaHarryz/my-portfolio
+my-portfolio/
+
+# Local copy of the 2025 version (already in git history)
+_backup-2025/
+
+# Claude Code local config
+.claude/
+
+# Clones made by GitHub Desktop
+web-portfolio/
