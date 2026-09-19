@@ -1,481 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <title>wwww.mobaharryz.com</title>
+    <title>Harrys Moreno | Software Developer </title>
+    <meta name="description" content="Harrys Moreno  — Software Developer with 3+ years building and modernizing with full-stack systems in Java, JavaScript, TypeScript, Node.js, and MySQL.">
+    <meta property="og:title" content="Harrys Moreno | Software Developer">
+    <meta property="og:description" content="I design and build clean, responsive, easy-to-use digital products.">
+    <meta property="og:image" content="Objetos UX-UI/profile.jpg">
+    <meta name="theme-color" content="#00000C">
+    <link rel="icon" href="Objetos UX-UI/LogoP.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Apply the saved theme before first paint to avoid a flash
+        try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
 </head>
 
 <body>
-    <!---MENU ENCABEZADO-->
-    <div class="contenedor-header">
-        <header>
-            <div class="logo">
-                <a href="#home">
-                    <img src=" Objetos UX-UI/LogoP.png" title="Volver al home">
-                </a>
-            </div>
-            
-            <nav id="nav">
-                <ul>
-                    <li>
-                        <a href="#home" onclick="seleccionar()">INICIO</a>
-                    </li>
-                    <li>
-                        <a href="#about" onclick="seleccionar()">SOBRE MI</a>
-                    </li>
-                    <li>
-                        <a href="#skills" onclick="seleccionar()">SKILLS</a>
-                    </li>
-                    <li>
-                        <a href="#curriculum" onclick="seleccionar()">CURRICULUM</a>
-                    </li>
-                    <li>
-                        <a href="#portfolio" onclick="seleccionar()">PORTFOLIO</a>
-                    </li>
-                    <li>
-                        <a href="#contact" onclick="seleccionar()">CONTACTO</a>
-                    </li>
-                    <img src="Objetos UX-UI/luna.png" id="icon">
-                </ul>
-                
-            </nav>
-            <div class="nav-responsive" onclick="mostrarOcultarMenu()">
-                <i class="fa-solid fa-bars "></i>
-            </div>
-        </header>
-    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!---SESION H O M E-->
-    <section id="home" class="home">
-        <div class="contenido-home">
-            <div class="contenedor-img">
-                <img src="Objetos UX-UI/Profile.png" alt=" ">
-            </div>
-            <h1>HARRYS MOBA</h1>
-            <h2>UX/UI & Frontend Development</h2>
-            <div class="redes ">
-                <a href="https://wa.link/dyd9cs" target="_blank" title="Ir a whatsapp"><i class="fa-brands fa-whatsapp "></i></a>
-                <a href="https://www.linkedin.com/in/harrys-moreno-c%C3%B3rdoba-a8107a212/ " target="_blank" title="Ir a linkedin"><i class="fa-brands fa-linkedin-in "></i></a>
-                <a href="https://www.instagram.com/harryz10design/" target="_blank" title="Ir a instagram"><i class="fa-brands fa-instagram " ></i></a>
+    <!-- HEADER -->
+    <header class="site-header" id="header">
+        <div class="container header-inner">
+            <a href="#home" class="logo" aria-label="Back to home">
+                <img src="Objetos UX-UI/LogoP.png" alt="Harrys Moreno logo" width="48" height="48">
+            </a>
+
+            <nav id="nav" class="nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle light / dark mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="icon-btn nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
-    </section>
-    <!---SESION SOBRE MI-->
-    <section id="about" class="about">
-        <div class="contenidoabout">
-            <h2>SOBRE MÍ</h2>
-            <p><span>Hola, soy Harrys Moreno Córdoba.</span> Soy un desarrollador front-end apasionado por crear experiencias web elegantes, responsivas y fáciles de usar. 
-                Ya sea creando interfaces de usuario intuitivas o dando vida a ideas creativas con código, me encanta convertir conceptos en sitios web limpios y funcionales. 
-                Actualmente estoy perfeccionando mis habilidades de diseño para crear interfaces que no solo funcionen bien, sino que también se vean geniales. Siempre curioso, siempre aprendiendo..
-            </p>
-            <div class="fila">
-                <!---Datos Personales-->
-                <div class="col">
-                    <h3>Datos Personales</h3>
-                    <ul>
-                        <li><strong>Fecha de nacimiento :</strong> 10-09-1992
-                        </li>
-                        <li><strong>Teléfono :</strong> +57 316 1669952
-                        </li>
-                        <li><strong>Correo :</strong> harrys-10@hotmail.com
-                        </li>
-                       
-                        <li><strong>Ubicación :</strong> Medellín - Colombia
-                        </li>
-                        <li><strong>Cargo :</strong> Diseñador UX/UI y Desarrollador Frontend
-                        </li>
+    </header>
+
+    <main id="main">
+        <!-- HOME -->
+        <section id="home" class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text reveal">
+                    <p class="eyebrow">Hi, I'm</p>
+                    <h1>Harrys Moreno <span>Córdoba</span></h1>
+                    <h2 class="role">Software Developer <span class="plus">+</span> <span class="typed" id="typed">UX/UI Designer</span></h2>
+                    <p class="lead">
+                        I design and build clean, responsive and easy-to-use digital products —
+                        from the first Figma wireframe to tested, production-ready code.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#portfolio" class="btn btn-primary">View my work <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="CV/Software_Developer.pdf" class="btn btn-ghost" download="Harrys-Moreno-CV.pdf">Download CV <i class="fa-solid fa-download"></i></a>
+                    </div>
+                    <div class="socials">
+                        <a href="https://wa.link/dyd9cs" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/harrys-moreno-c%C3%B3rdoba-a8107a212/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/harryz10design/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="mailto:mobaharrys@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="hero-photo reveal">
+                    <div class="photo-ring">
+                        <img src="Objetos UX-UI/profile.webp" alt="Portrait of Harrys Moreno" width="380" height="380" fetchpriority="high">
+                    </div>
+                    <span class="badge badge-status"><i class="fa-solid fa-circle"></i> Open to opportunities</span>
+                </div>
+            </div>
+            <a href="#about" class="scroll-hint" aria-label="Scroll to About"><i class="fa-solid fa-chevron-down"></i></a>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section">
+            <div class="container">
+                <header class="section-head reveal">
+                    <span class="section-kicker">01 — About</span>
+                    <h2>Code with a developer's mind</h2>
+                </header>
+
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <p>
+                            I'm a software developer living in <strong>Medellín, Colombia</strong>, with a background in
+                            <strong>full-stack development</strong> and <strong>systems technology</strong>, currently open to new opportunities.
+                        </p>
+                        <p>
+                            Along the way I've worked across the whole product: front-end and back-end development, 
+                            also understanding the UX/UI design. I have experience with Oracle databases and MySQL, QA and data analysis — always within agile teams using
+                            <strong>Scrum</strong>. That mix lets me talk to designers, developers and stakeholders in
+                            their own language, and turn ideas into enterprise-level interfaces that work well <em>and</em> look great.
+                        </p>
+                        <p>
+                            I'm fluent in English, curious by nature, and always learning — lately exploring how
+                            <strong>Large Language Models</strong> can make products smarter.
+                        </p>
+
+                        <ul class="stats">
+                            <li><span class="stat-num">6+</span><span class="stat-label">years designing &amp; building</span></li>
+                            <li><span class="stat-num">3</span><span class="stat-label">tech &amp; design degrees</span></li>
+                            <li><span class="stat-num">2</span><span class="stat-label">languages (ES / EN)</span></li>
+                        </ul>
+                    </div>
+
+                    <aside class="card info-card reveal">
+                        <h3>Quick facts</h3>
+                        <ul class="facts">
+                            <li><i class="fa-solid fa-location-dot"></i><span><strong>Location</strong>Medellin, Colombia</span></li>
+                            <li><i class="fa-solid fa-briefcase"></i><span><strong>Role</strong>Software Developer</span></li>
+                            <li><i class="fa-solid fa-envelope"></i><span><strong>Email</strong><a href="mailto:mobaharrys@gmail.com">mobaharrys@gmail.com</a></span></li>
+                            <li><i class="fa-solid fa-phone"></i><span><strong>Phone</strong><a href="tel:+573161669952">+57 316 166 9952</a></span></li>
+                            <li><i class="fa-solid fa-language"></i><span><strong>Languages</strong>Spanish · English</span></li>
+                        </ul>
+
+                        <h3>What I like</h3>
+                        <ul class="likes">
+                            <li><img src="Objetos UX-UI/Music.png" alt="">Music</li>
+                            <li><img src="Objetos UX-UI/Trips.png" alt="">Travel</li>
+                            <li><img src="Objetos UX-UI/Dance.png" alt="">Dance</li>
+                            <li><img src="Objetos UX-UI/Art.png" alt="">Art</li>
+                            <li><img src="Objetos UX-UI/Workout.png" alt="">Workout</li>
+                            <li><img src="Objetos UX-UI/Read.png" alt="">Reading</li>
+                            <li><img src="Objetos UX-UI/Tech.png" alt="">Tech</li>
+                            <li><img src="Objetos UX-UI/Medit.png" alt="">Meditation</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="section section-alt">
+            <div class="container">
+                <header class="section-head reveal">
+                    <span class="section-kicker">02 — Skills</span>
+                    <h2>What I work with</h2>
+                </header>
+
+                <div class="skills-grid">
+                    <article class="card skill-card reveal">
+                        <div class="skill-card-head"><i class="fa-solid fa-code"></i><h3>Front-end</h3></div>
+                        <ul class="bars">
+                            <li data-level="75"><span>HTML &amp; CSS</span></li>
+                            <li data-level="70"><span>JavaScript / TypeScript</span></li>
+                            <li data-level="60"><span>React</span></li>
+                            <li data-level="70"><span>Angular</span></li>
+                            <li data-level="75"><span>LLMs</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="card skill-card reveal">
+                        <div class="skill-card-head"><i class="fa-solid fa-database"></i><h3>Back-end &amp; Quality</h3></div>
+                        <ul class="bars">
+                            <li data-level="75"><span>SQL Databases (Oracle and MySQL)</span></li>
+                            <li data-level="70"><span>QA Testing</span></li>
+                            <li data-level="70"><span>Back-end (Node.js, Java, APIs)</span></li>
+                            <li data-level="60"><span>Cloud (Azure DevOps)</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="card skill-card reveal">
+                        <div class="skill-card-head"><i class="fa-solid fa-pen-ruler"></i><h3>Design</h3></div>
+                        <ul class="bars">
+                            <li data-level="85"><span>Figma</span></li>
+                            <li data-level="85"><span>Adobe XD</span></li>
+                            <li data-level="85"><span>Photoshop</span></li>
+                            <li data-level="85"><span>Illustrator</span></li>
+                            <li data-level="75"><span>UX/UI Design</span></li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="toolbox reveal">
+                    <h3>Also in my toolbox</h3>
+                    <ul class="tags">
+                        <li>Node.js</li><li>Java</li><li>MongoDB</li><li>REST APIs</li><li>jQuery</li>
+                        <li>Git</li><li>Scrum</li><li>Unit Testing</li><li>LLMs</li>
+                        <li>SAP BTP Integration Suite</li><li>Clean Code</li><li>Prompt Engineering</li><li>Prototyping</li>
+                    </ul>
+                    <h3>How I work</h3>
+                    <ul class="tags tags-soft">
+                        <li><i class="fa-solid fa-people-group"></i> Teamwork</li>
+                        <li><i class="fa-solid fa-comments"></i> Communication</li>
+                        <li><i class="fa-solid fa-handshake"></i> Commitment</li>
+                        <li><i class="fa-solid fa-bolt"></i> Proactiveness</li>
+                        <li><i class="fa-solid fa-shuffle"></i> Adaptability</li>
+                        <li><i class="fa-solid fa-medal"></i> Dedication</li>
                     </ul>
                 </div>
-                <!---Lo que me gusta-->
-                <div class="col">
-                    <h3>Lo que me gusta</h3>
-                    <div class="contenedor-gustos">
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Music.png" alt=" ">
-                            <span>MUSICA</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Trips.png" alt=" ">
-                            <span>VIAJAR</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Dance.png" alt=" ">
-                            <span>BAILAR</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Art.png" alt=" ">
-                            <span>ARTE</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Workout.png" alt=" ">
-                            <span>EJERCICIO</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Read.png" alt=" ">
-                            <span>LECTURA</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Tech.png" alt=" ">
-                            <span>TECNOLOGÍA</span>
-                        </div>
-                        <div class="gustos">
-                            <img src="Objetos UX-UI/Medit.png" alt=" ">
-                            <span>MEDITACIÓN</span>
-                        </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE & EDUCATION -->
+        <section id="experience" class="section">
+            <div class="container">
+                <header class="section-head reveal">
+                    <span class="section-kicker">03 — Curriculum</span>
+                    <h2>Experience &amp; education</h2>
+                </header>
+
+                <div class="cv-grid">
+                    <div>
+                        <h3 class="col-title"><i class="fa-solid fa-briefcase"></i> Work experience</h3>
+                        <ol class="timeline">
+                            <li class="reveal">
+                                <span class="date">2024 — 2026</span>
+                                <h4>Sports Trader Analyst</h4>
+                                <p>Real-time monitoring of sports odds, data collection and market-based comparative analysis,
+                                    Documented data flows and trading procedures so global teams could reproduce the same analysis.
+                                    Worked daily with trading, operations and technical teams — translating what traders needed into terms engineering could
+                                    act on. Plus UX design and sofware testing for internal tools.</p>
+                                <ul class="tags tags-sm"><li>Data analysis</li><li>UX</li></ul>
+                            </li>
+                            <li class="reveal">
+                                <span class="date">Feb 2022 — Jun 2024</span>
+                                <h4>Backend Developer <small>SETI S.A.S</small></h4>
+                                <p>Queries and analysis on Oracle SQL databases, configuration of OIPA development (Dev) and testing (QA) environments, Java/XML development, unit tests with Java 8 and pipelines in Azure DevOps.</p>
+                                <ul class="tags tags-sm"><li>Oracle SQL</li><li>Java</li><li>XML</li><li>Azure DevOps</li></ul>
+                            </li>
+                            <li class="reveal">
+                                <span class="date">2020 — 2021</span>
+                                <h4>Freelance Developer &amp; Designer</h4>
+                                <p>UX/UI design in Figma and Adobe XD for web and mobile apps, with design research focused on usability. Websites built with HTML, CSS, JavaScript, Angular, TypeScript, Node.js, APIs and MongoDB. Brand identity, custom logos and video editing.</p>
+                                <ul class="tags tags-sm"><li>Figma</li><li>Angular</li><li>Node.js</li><li>Branding</li></ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h3 class="col-title"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+                        <ol class="timeline">
+                            <li class="reveal">
+                                <span class="date">2025 — Present</span>
+                                <h4>Software Engineering <small>UNIMINUTO University</small></h4>
+                            </li>
+                            <li class="reveal">
+                                <span class="date">2018 - 2019</span>
+                                <h4>Graphic Designer for web and mobile apps<small>Pascual Bravo University Institution</small></h4>
+                            </li>
+                            <li class="reveal">
+                                <span class="date">2012 — 2015</span>
+                                <h4>Technical Systems Technician - Diploma <small>CESDE Institute</small></h4>
+                            </li>
+                        </ol>
+
+                        <h3 class="col-title"><i class="fa-solid fa-certificate"></i> Courses</h3>
+                        <ul class="courses reveal">
+                            <li><span>Large Language Models (LLM)</span></li>
+                            <li><span>Java Microservices architecture</span></li>
+                            <li><span>Software Testing / QA</span><em>2025</em></li>
+                            <li><span>Scrum Foundation</span><em>2020</em></li>
+                            <li><span>UX/UI Design for websites &amp; apps (Adobe XD, Figma)</span><em>2022</em></li>
+                            <li><span>Master in SQL (Functions, Stored Procedures, Triggers, etc.)</span><em>2024</em></li>
+                            <li><span>JavaScript Master: Angular, Node.js, TypeScript, jQuery</span><em>2021</em></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <button>
-                <a href="CV/Currículum.pdf" download target="_blank">Descargar CV</a>
-                <i class="fa-solid fa-download "></i>
-                <span class="overlay"></span>
-              </button>
-        </div>
+        </section>
 
-    </section>
+        <!-- PORTFOLIO -->
+        <section id="portfolio" class="section section-alt">
+            <div class="container">
+                <header class="section-head reveal">
+                    <span class="section-kicker">04 — Portfolio</span>
+                    <h2>Selected work</h2>
+                </header>
 
-    <!--SECTION SKILLS-->
-    <section id="skills" class="skills">
-        <div class="contenidoskills">
-            <h2>SKILLS</h2>
-            <div class="fill">
-                <!--Technical Skills-->
-                <div class="skill">
-                    <h3>Technical Skills</h3>
-                    <div class="class-skill">
-                        <span>Diseño UX/UI</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>75%</span>
-                            </div>
+                <div class="gallery">
+                    <!-- Live project: when the app is deployed, replace http://localhost:4200 in BOTH links below with its public URL -->
+                    <article class="project project-live reveal" data-category="uxui">
+                        <a class="project-media" href="http://localhost:4200" target="_blank" rel="noopener" aria-label="Open the Clinic Mascotas web app (opens in a new tab)">
+                            <img src="Objetos UX-UI/Clinic M.png" alt="Clinic Mascotas web app" loading="lazy">
+                            <span class="live-badge"><i class="fa-solid fa-circle"></i> Live app</span>
+                        </a>
+                        <div class="project-body">
+                            <span class="project-tag">Full-stack · UX/UI</span>
+                            <h3>Clinic Mascotas — Pet clinic app</h3>
+                            <p>Online booking for a veterinary clinic with real-time availability and a staff admin panel. From my Adobe XD designs to production code.</p>
+                            <ul class="tags tags-sm">
+                                <li>Angular</li><li>Spring Boot</li><li>MongoDB</li><li>JWT</li>
+                            </ul>
+                            <a class="project-link" href="http://localhost:4200" target="_blank" rel="noopener">
+                                Visit the web app <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
                         </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Javascript</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>65%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>HTML & CSS</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>75%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Base de Datos SQL</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>50%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>QA Testing</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>65%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Backend</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>50%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Cloud Computing</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>50%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Adobe XD</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>85%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Figma</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>85%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Photoshop</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>85%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Illustrator</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>85%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Soft Skills-->
-                <div class="skill">
-                    <h3>Soft Skills</h3>
-                    <div class="class-skill">
-                        <span>Trabajo en Equipo</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>100%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Compromiso</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>100%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Comunicación</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>100%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Dedicación</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>100%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Proactividad</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>100%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="class-skill">
-                        <span>Adaptabilidad</span>
-                        <div class="barra-skill">
-                            <div class="progreso">
-                                <span>100%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </article>
 
-    <!--SECTION CURRRICULUM-->
-    <section id="curriculum" class="curriculum">
-        <div class="contenidoCV">
-            <h2>CURRICULUM</h2>
-            <div class="filac">
-                <div class="col">
-                    <h3>Historial Académico</h3>
-                    <div class="item izq">
-                        <h4>Cursos Online</h4>
-                        <span></span>
-                        <span class="izquierda">
-                                Diseño UX/UI para sitios web y apps
-                            </span><br>
-                        <span class="fecha">Año: 2022</span><br>
-                        <span class="izquierda">
-                                Bases de datos SQL
-                            </span><br>
-                        <span class="fecha">Año: 2022</span><br>
-                        <span class="izquierda">
-                                JavaScript (Angular, NodeJS, Typescript)
-                            </span><br>
-                        <span class="fecha">Año: 2021</span>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                    <div class="item izq">
-                        <h4>Institución Universitaria Pascual Bravo </h4>
-                        <span class="izquierda"> Diseñador Gráfico<br>
-                                Graphic Designer</span><br>
-                        <span class="fecha">Año: 2019</span>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                    <div class="item izq">
-                        <h4>Instituto CESDE</h4>
-                        <span class="izquierda">Técnico en Sistemas <br>
-                                System Technologist </span><br>
-                        <span class="fecha">Año: 2012 - 2015</span>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col derecha">
-                    <h3>Experiencia Laboral</h3>
-                    <div class="item dere">
-                        <h4>Consultor Junior en SETI S.A.S</h4>
-                        <p> Análisis y consultas en bases de datos con Oracle SQL, desarrollo en lenguaje Java-XML, cloud computing con Azure devOps, pruebas unitarias con Java 8 jdk. <br>
-                        </p>
-                        <span class="fecha">Año: 2022 - 07/2023</span>
-                    </div>
-                    <div class="item right">
-                        <h4>Freelance</h4>
-                        <p>Diseño de experiencia e interfaz de usuario con Adobe XD y Figma. Creación de prototipos web y móviles. <br>
-                            <p>Año: 2022</p>
-                        </p>
-                        <p>Maquetación web con HTML5 y CSS3 diseño y desarrollo de páginas web, aplicando funcionalidad con Javascript, Angular, Typescript y NodeJS. <br>
-                            <p>Año: 2021</p>
-                        </p>
-                        <p>Diseño Gráfico para identidad de marca (branding design) con Illustrator, Photoshop, creación de logotipos personalizados y edición de video con Adobe Premiere y After Effect.<br>
-                            <p>Año: 2020</p>
-                        </p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECCION PORTAFOLIO-->
-    <section id="portfolio" class="portfolio">
-        <div class="contenidofolio">
-            <h2>PORTFOLIO</h2>
-            <div class="gallery">
-                <div class="proyecto">
-                    <a href="Objetos UX-UI/Web Art.png" target="_blank">
-                        <img src=" Objetos UX-UI/Web Art.png" alt=" ">
-                        <div class="overlay">
-                            <h3>Diseño de Portafolio</h3>
-                            <p>Orientado al arte visual y fotográfico</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="proyecto">
-                    <a href="Objetos UX-UI/Tarro CB.png" target="_blank">
-                        <img src=" Objetos UX-UI/Tarro CB.png" alt=" ">
-                        <div class="overlay">
-                            <h3>Diseño de Producto</h3>
-                            <p>Orientado al diseño de marcas</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="proyecto">
-                    <a href="Objetos UX-UI/Clinic M.png" target="_blank">
-                        <img src="Objetos UX-UI/Clinic M.png" alt=" ">
-                        <div class="overlay">
-                            <h3>Diseño de Prototipo web y móvil</h3>
-                            <p>Orientado a la experiencia e interfaz de usuario</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="proyecto">
-                    <a href="Objetos UX-UI/Dev.png" target="_blank">
-                        <img src="Objetos UX-UI/Dev.png" alt=" ">
-                        <div class="overlay">
-                            <h3>Diseño de identidad visual</h3>
-                            <p>Tarjeta de contacto</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="proyecto">
-                    <a href="Objetos UX-UI/Travel.png" target="_blank">
-                        <img src=" Objetos UX-UI/Travel.png" alt=" ">
-                        <div class="overlay">
-                            <h3>Diseño de prototipo web y móvil</h3>
-                            <p>Orientado a la experiencia e interfaz de usuario</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="proyecto">
-                    <a href="Objetos UX-UI/Afro DiDi.jpg" target="_blank">
-                        <img src=" Objetos UX-UI/Afro DiDi.jpg" alt=" ">
-                        <div class="overlay ">
-                            <h3>Ilustración</h3>
-                            <p>Orientado a la ilustración digital</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- <div class="popup ">
-                <img src="Objetos UX-UI/Clinic M.png " alt=" ">
-                <span>&times;</span>
-        </div>-->
-    </section>
-
-    <!--SECCION CONTACTO-->
-    <section id="contact" class="contact">
-        <div class="contenidocontact">
-            <h2>CONTACTO</h2>
-            <div class="fila">
-                <!--FORMULARIO-->
-                <div class="col">
-                    <form action="https://formsubmit.co/mrharryz12@gmail.com" method="POST">
-                        <input type="text" name="nombres" placeholder="Nombres">
-                        <input type="text" name="apellidos" placeholder="Apellidos">
-                        <input type="number" name="telefono" placeholder="Telefono">
-                        <input type="email" name="correo" placeholder="Correo">
-                        <textarea name="mensaje" cols="30" rows="10" placeholder="Mensaje"></textarea>
-                        <input type="hidden" name="_next" value="http://127.0.0.1:5500/">
-                        <input type="hidden" name="_captcha " value="false ">
-                        <button>
-                            Enviar Mensaje <i class="fa-sharp fa-regular fa-paper-plane"></i>
-                            <span class="overlay"></span>
+                    <article class="project reveal" data-category="uxui">
+                        <button class="project-media" data-full="Objetos UX-UI/Travel.png" aria-label="Open Travel prototype">
+                            <img src="Objetos UX-UI/Travel.png" alt="Travel web and mobile prototype" loading="lazy">
                         </button>
+                        <div class="project-body">
+                            <span class="project-tag">UX/UI · Web &amp; Mobile</span>
+                            <h3>Travel app</h3>
+                            <p>Prototype designed around discovery and a clear, visual interface.</p>
+                        </div>
+                    </article>
+
+                    <article class="project reveal" data-category="uxui">
+                        <button class="project-media" data-full="Objetos UX-UI/Web Art.png" aria-label="Open Web Art portfolio design">
+                            <img src="Objetos UX-UI/Web Art.png" alt="Portfolio website design for visual art" loading="lazy">
+                        </button>
+                        <div class="project-body">
+                            <span class="project-tag">Web Design</span>
+                            <h3>Web Art — Portfolio design</h3>
+                            <p>Portfolio website oriented to visual and photographic art.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section">
+            <div class="container">
+                <header class="section-head reveal">
+                    <span class="section-kicker">05 — Contact</span>
+                    <h2>Let's build something together</h2>
+                </header>
+
+                <div class="contact-grid">
+                    <div class="contact-info reveal">
+                        <p>Have a project, a role or just an idea? Send me a message and I'll get back to you as soon as possible.</p>
+                        <ul class="contact-list">
+                            <li><a href="mailto:mobaharrys@gmail.com"><i class="fa-solid fa-envelope"></i> mobaharrys@gmail.com</a></li>
+                            <li><a href="https://wa.link/dyd9cs" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> +57 316 166 9952</a></li>
+                            <li><a href="https://www.linkedin.com/in/harrys-moreno-c%C3%B3rdoba-a8107a212/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> Harrys Moreno Córdoba</a></li>
+                            <li><span><i class="fa-solid fa-location-dot"></i> Medellín, Colombia</span></li>
+                        </ul>
+                    </div>
+
+                    <form class="card contact-form reveal" action="https://formsubmit.co/mobaharrys@gmail.com" method="POST">
+                        <div class="form-row">
+                            <label>First name<input type="text" name="first_name" autocomplete="given-name" required></label>
+                            <label>Last name<input type="text" name="last_name" autocomplete="family-name" required></label>
+                        </div>
+                        <div class="form-row">
+                            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+                            <label>Phone <small>(optional)</small><input type="tel" name="phone" autocomplete="tel"></label>
+                        </div>
+                        <label>Message<textarea name="message" rows="6" required></textarea></label>
+                        <input type="hidden" name="_subject" value="New message from your portfolio">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off">
+                        <button type="submit" class="btn btn-primary">Send message <i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <a href="#home" class="to-top" aria-label="Back to top"><i class="fa-solid fa-angles-up"></i></a>
+        <div class="socials">
+            <a href="https://wa.link/dyd9cs" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/in/harrys-moreno-c%C3%B3rdoba-a8107a212/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/harryz10design/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
-    </section>
+        <p>&copy; <span id="year">2026</span> Harrys Moreno · Designed &amp; developed by harryz10design</p>
+    </footer>
 
-</body>
-<!--FOOTER-->
-<footer>
-    <a href="#home " class="arriba ">
-        <i class="fa-solid fa-angles-up "></i>
-    </a>
-    <div class="redes ">
-        <a alt=" "><i class="fa-brands fa-whatsapp "></i></a>
-        <a alt=" "><i class="fa-brands fa-linkedin-in "></i></a>
-        <a alt=" "><i class="fa-brands fa-instagram "></i></a>
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Project preview">
+        <button class="lightbox-close" aria-label="Close preview">&times;</button>
+        <img src="" alt="">
     </div>
-    <p>&copy; actualizado 2025 - Desarrollado por harryz10design - Todos los derechos reservados.</p>
-</footer>
-<script src="funcionalidad.js ">
-</script>
 
-
-</html>
-
-</html>
+    <script src="funcionalidad.js"></script>
+</body>
 
 </html>
