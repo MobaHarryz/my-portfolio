@@ -1,0 +1,1 @@
+function a(t){let[e,n,r]=t.slice(0,10).split("-").map(Number);return new Date(e,n-1,r)}function o(t){let e=a(t),[n,r]=t.slice(11,16).split(":").map(Number);return e.setHours(n,r),e}function s(){let t=new Date,e=n=>String(n).padStart(2,"0");return`${t.getFullYear()}-${e(t.getMonth()+1)}-${e(t.getDate())}`}export{a,o as b,s as c};

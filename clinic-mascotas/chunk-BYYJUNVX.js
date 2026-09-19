@@ -1,0 +1,1 @@
+var e={CONFIRMED:"Confirmada",COMPLETED:"Atendida",NO_SHOW:"No asisti\xF3",CANCELLED:"Cancelada"},t=[{id:"MONDAY",label:"Lunes"},{id:"TUESDAY",label:"Martes"},{id:"WEDNESDAY",label:"Mi\xE9rcoles"},{id:"THURSDAY",label:"Jueves"},{id:"FRIDAY",label:"Viernes"},{id:"SATURDAY",label:"S\xE1bado"},{id:"SUNDAY",label:"Domingo"}];export{e as a,t as b};
