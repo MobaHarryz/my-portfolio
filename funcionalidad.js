@@ -55,7 +55,7 @@ paintThemeIcon();
 
 // ===== Rotating role text in the hero =====
 const typed = document.getElementById("typed");
-const roles = ["UX/UI Designer", "Front-end Developer", "QA Tester", "Problem Solver"];
+const roles = ["Consultant", "Backend", "Frontend"];
 let roleIndex = 0;
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
