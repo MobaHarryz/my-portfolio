@@ -20,3 +20,6 @@ Thumbs.db
 
 # Clone made by GitHub Desktop (same repo as this folder)
 clinic-mascotas/
+
+# Angular build copied into the API for single-service deploys
+backend/src/main/resources/static/

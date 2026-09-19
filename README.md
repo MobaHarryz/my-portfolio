@@ -105,6 +105,23 @@ cd frontend && npm run build
 
 ---
 
+## ☁️ Deployment (free: Render + MongoDB Atlas)
+
+The [`Dockerfile`](Dockerfile) builds the Angular app and bundles it inside the Spring Boot jar, so the whole app runs as **one web service on one URL** (no CORS, no second host).
+
+1. **Database — MongoDB Atlas** (free M0 cluster)
+   - Create a cluster, a database user, and under *Network Access* allow `0.0.0.0/0`.
+   - Copy the connection string and add the database name before the `?`:
+     `mongodb+srv://USER:PASSWORD@cluster0.xxxxx.mongodb.net/clinic_mascotas?retryWrites=true&w=majority`
+2. **App — Render** (free web service)
+   - *New → Blueprint* → select this repository. [`render.yaml`](render.yaml) configures everything.
+   - Fill in `MONGODB_URI` (step 1), `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD`. `JWT_SECRET` is generated automatically.
+   - The first deploy takes a few minutes; the app is then live at `https://<service-name>.onrender.com`.
+
+> Free Render services sleep after 15 minutes without traffic, so the first visit after a pause takes ~1 minute to wake up.
+
+---
+
 ## ⚙️ Configuration (environment variables)
 
 | Variable | Default | Description |
@@ -142,7 +159,6 @@ Front-end API URLs live in `frontend/src/environments/`.
 - Email confirmation and reminders.
 - Client self-service cancellation with a signed link.
 - Integration tests with Testcontainers and CI on GitHub Actions.
-- Deployment: Angular on Vercel/Netlify, API on Render, database on MongoDB Atlas.
 
 ---
 

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  // Replace with the deployed API URL (e.g. https://clinic-mascotas-api.onrender.com/api)
-  apiUrl: 'https://clinic-mascotas-api.onrender.com/api',
+  // In production the Spring Boot API serves this app, so the API lives on the same origin
+  apiUrl: '/api',
 };

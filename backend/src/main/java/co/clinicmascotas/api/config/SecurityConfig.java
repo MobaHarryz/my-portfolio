@@ -52,6 +52,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/appointments", "/api/contact").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/error").permitAll()
+                        // Anything else under the API is closed; all other GETs are the Angular app's static files
+                        .requestMatchers("/api/**", "/actuator/**").denyAll()
+                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
                         .anyRequest().denyAll())
                 .oauth2ResourceServer(oauth -> oauth
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
