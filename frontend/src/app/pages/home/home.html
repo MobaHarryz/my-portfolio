@@ -1,0 +1,76 @@
+<app-site-header />
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Porque son nuestros mejores amigos</p>
+        <h1>Atención veterinaria de primer nivel</h1>
+        <p class="lead">Reserva una hora para que tu mascota sea atendida por uno de nuestros profesionales</p>
+        <a routerLink="/reservar" class="btn btn-primary btn-lg">Reserva tu hora</a>
+
+        <ul class="services">
+          @for (service of services; track service.title) {
+            <li>
+              <h2>{{ service.title }}</h2>
+              <p>{{ service.text }}</p>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="hero-art">
+        <img src="images/dog.png" alt="Perro Doberman de perfil" width="434" height="362" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="container">
+      <h2 class="section-title">Reservar es muy fácil</h2>
+      <ol class="steps">
+        @for (step of steps; track step.title; let i = $index) {
+          <li>
+            <span class="step-number">{{ i + 1 }}</span>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.text }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  @if (vets().length) {
+    <section class="team">
+      <div class="container">
+        <h2 class="section-title">Nuestro equipo</h2>
+        <p class="section-sub">Médicos veterinarios titulados de las mejores universidades de Antioquia.</p>
+        <ul class="vet-grid">
+          @for (vet of vets(); track vet.id) {
+            <li class="vet-card">
+              <app-vet-avatar [name]="vet.fullName" [photoUrl]="vet.photoUrl" [size]="72" />
+              <strong>{{ vet.fullName }}</strong>
+              <span>{{ vet.title }}</span>
+              <span class="muted">{{ vet.university }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+  }
+
+  <section class="cta">
+    <div class="container cta-inner">
+      <div>
+        <h2>¿Tienes dudas?</h2>
+        <p>Escríbenos y te responderemos lo antes posible.</p>
+      </div>
+      <div class="cta-actions">
+        <a routerLink="/contacto" class="btn btn-outline">Contáctanos</a>
+        <a routerLink="/reservar" class="btn btn-primary"><app-icon name="calendar-check" [size]="18" /> Reservar</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-site-footer />
