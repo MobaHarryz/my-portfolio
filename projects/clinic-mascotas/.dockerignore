@@ -1,0 +1,8 @@
+.git
+design
+clinic-mascotas
+**/node_modules
+frontend/dist
+frontend/.angular
+backend/target
+backend/src/main/resources/static

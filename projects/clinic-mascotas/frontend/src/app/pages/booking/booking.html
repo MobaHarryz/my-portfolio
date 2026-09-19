@@ -1,0 +1,291 @@
+<div class="band">
+  <app-site-header />
+
+  <div class="container wizard-head">
+    <h1>Asistente de reserva</h1>
+    @if (clinic(); as info) {
+      <p class="price">Precio consulta: {{ info.consultationPrice | currency: info.currency : 'symbol-narrow' : '1.0-0' }}</p>
+    }
+
+    <ol class="stepper" [style.--progress]="step() / (stepLabels.length - 1)">
+      @for (label of stepLabels; track label; let i = $index) {
+        <li [class.done]="i < step()" [class.current]="i === step()" [attr.aria-current]="i === step() ? 'step' : null">
+          <span class="dot">
+            @if (i < step()) {
+              <app-icon name="check" [size]="11" [strokeWidth]="4" />
+            }
+          </span>
+          <span class="label">{{ label }}</span>
+        </li>
+      }
+    </ol>
+  </div>
+</div>
+
+<main class="container wizard-body">
+  @switch (step()) {
+    <!-- STEP 1: pet type -->
+    @case (0) {
+      <section>
+        <h2>Tipo de mascota</h2>
+        <p class="hint">Selecciona el tipo de mascota que se va a atender.</p>
+
+        @if (noAvailabilityAtAll()) {
+          <ng-container [ngTemplateOutlet]="noAvailability"
+                        [ngTemplateOutletContext]="{ title: 'No hay horas disponibles en este momento', text: 'Todas las agendas están completas para las próximas semanas. Escríbenos y te avisaremos apenas se libere un espacio.', action: null }" />
+        }
+
+        @if (clinic(); as info) {
+          <div class="options pets" role="radiogroup" aria-label="Tipo de mascota">
+            @for (type of info.petTypes; track type.id) {
+              @let unavailable = unavailablePetTypes().has(type.id);
+              <button type="button" class="option pet" role="radio" [attr.aria-checked]="petType() === type.id"
+                      [class.selected]="petType() === type.id" [class.unavailable]="unavailable" [disabled]="unavailable"
+                      [attr.aria-describedby]="unavailable ? 'unavailable-' + type.id : null" (click)="selectPetType(type.id)">
+                <app-icon [name]="petIcons[type.id]" [size]="34" [strokeWidth]="1.8" />
+                <span>{{ type.label }}</span>
+                @if (unavailable) {
+                  <small class="badge-off" [id]="'unavailable-' + type.id">Sin disponibilidad</small>
+                }
+                <app-icon class="tick" name="check" [size]="18" [strokeWidth]="3" />
+              </button>
+            }
+          </div>
+          @if (unavailablePetTypes().size > 0 && !noAvailabilityAtAll()) {
+            <p class="hint-off"><app-icon name="calendar-x" [size]="16" /> Algunas especialidades no tienen horas libres por ahora.</p>
+          }
+        } @else {
+          <div class="options pets">
+            @for (i of [1, 2, 3, 4]; track i) { <div class="option skeleton"></div> }
+          </div>
+        }
+      </section>
+    }
+
+    <!-- STEP 2: vet -->
+    @case (1) {
+      <section>
+        <h2>Médico veterinario</h2>
+        <p class="hint">Selecciona al médico(a) veterinario con el que desees atender a tu mascota.</p>
+
+        @switch (vetsState()) {
+          @case ('loading') {
+            <div class="options">
+              @for (i of [1, 2, 3, 4]; track i) { <div class="option skeleton tall"></div> }
+            </div>
+          }
+          @case ('error') {
+            <p class="state">No pudimos cargar los profesionales. <button type="button" class="link" (click)="loadVets()">Reintentar</button></p>
+          }
+          @default {
+            @if (availableVets().length === 0) {
+              <ng-container [ngTemplateOutlet]="noAvailability"
+                            [ngTemplateOutletContext]="{ title: 'Sin horas disponibles para esta especialidad', text: 'Ninguno de nuestros profesionales tiene horarios libres para este tipo de mascota en las próximas semanas.', action: 'pet' }" />
+            }
+            @if (vets().length > 0) {
+              <div class="carousel">
+                <button type="button" class="arrow" aria-label="Anteriores" (click)="scroll('vets', -1)">
+                  <app-icon name="chevron-left" [size]="28" [strokeWidth]="1.5" />
+                </button>
+                <div class="track" #vetTrack role="radiogroup" aria-label="Profesionales">
+                  @for (item of vets(); track item.id) {
+                    <button type="button" class="option vet" role="radio" [attr.aria-checked]="vet()?.id === item.id"
+                            [class.selected]="vet()?.id === item.id" [class.unavailable]="!item.nextAvailable"
+                            [disabled]="!item.nextAvailable" (click)="selectVet(item)">
+                      <app-vet-avatar [name]="item.fullName" [photoUrl]="item.photoUrl" [size]="60" />
+                      <strong>{{ item.fullName }}</strong>
+                      <span>{{ item.title }}</span>
+                      <span>{{ item.university }}</span>
+                      @if (item.nextAvailable) {
+                        <small class="next">Desde {{ asDate(item.nextAvailable) | date: 'EEE d MMM' }}</small>
+                      } @else {
+                        <small class="badge-off">Agenda completa</small>
+                      }
+                      <app-icon class="tick" name="check" [size]="18" [strokeWidth]="3" />
+                    </button>
+                  }
+                </div>
+                <button type="button" class="arrow" aria-label="Siguientes" (click)="scroll('vets', 1)">
+                  <app-icon name="chevron-right" [size]="28" [strokeWidth]="1.5" />
+                </button>
+              </div>
+            }
+          }
+        }
+      </section>
+    }
+
+    <!-- STEP 3: date and time -->
+    @case (2) {
+      <section>
+        <h2>Horario de atención</h2>
+        <p class="hint">Selecciona el día y hora para la consulta con {{ vet()?.fullName }}.</p>
+
+        @switch (daysState()) {
+          @case ('loading') {
+            <div class="options">
+              @for (i of [1, 2, 3, 4]; track i) { <div class="option skeleton tall"></div> }
+            </div>
+          }
+          @case ('error') {
+            <p class="state">No pudimos cargar los horarios. <button type="button" class="link" (click)="loadDays()">Reintentar</button></p>
+          }
+          @default {
+            @if (days().length === 0) {
+              <ng-container [ngTemplateOutlet]="noAvailability"
+                            [ngTemplateOutletContext]="{ title: 'Este profesional ya no tiene horas disponibles', text: 'Los horarios de ' + vet()?.fullName + ' se completaron para las próximas semanas. Elige otro profesional para continuar.', action: 'vet' }" />
+            } @else {
+              <div class="carousel">
+                <button type="button" class="arrow" aria-label="Días anteriores" (click)="scroll('days', -1)">
+                  <app-icon name="chevron-left" [size]="28" [strokeWidth]="1.5" />
+                </button>
+                <div class="track days" #dayTrack>
+                  @for (day of days(); track day.date) {
+                    <div class="option day" [class.selected]="slot()?.date === day.date">
+                      <strong class="day-name">{{ asDate(day.date) | date: 'EEEE d MMMM' }}</strong>
+                      <ul role="radiogroup" [attr.aria-label]="asDate(day.date) | date: 'fullDate'">
+                        @for (time of day.times; track time) {
+                          <li>
+                            <button type="button" class="time" role="radio" [attr.aria-checked]="isSelected(day.date, time)"
+                                    [class.selected]="isSelected(day.date, time)" (click)="selectSlot(day.date, time)">
+                              {{ time.replace(':', '.') }} Hrs
+                            </button>
+                          </li>
+                        }
+                      </ul>
+                    </div>
+                  }
+                </div>
+                <button type="button" class="arrow" aria-label="Días siguientes" (click)="scroll('days', 1)">
+                  <app-icon name="chevron-right" [size]="28" [strokeWidth]="1.5" />
+                </button>
+              </div>
+            }
+          }
+        }
+      </section>
+    }
+
+    <!-- STEP 4: pet & owner data -->
+    @case (3) {
+      <form [formGroup]="form" (ngSubmit)="finish()" id="booking-form" novalidate>
+        <div class="data-grid">
+          <fieldset formGroupName="pet">
+            <legend>Datos de la mascota</legend>
+
+            <div class="row">
+              <label class="field">
+                <span>Nombre:</span>
+                <input formControlName="name" placeholder="Ingresar nombre" autocomplete="off" [class.invalid]="invalid('pet.name')" />
+                @if (invalid('pet.name')) { <small class="error">Ingresa el nombre</small> }
+              </label>
+              <label class="field">
+                <span>Raza:</span>
+                <select formControlName="breed" [class.invalid]="invalid('pet.breed')">
+                  <option value="" disabled>Selecciona</option>
+                  @for (breed of breeds(); track breed) { <option [value]="breed">{{ breed }}</option> }
+                </select>
+                @if (invalid('pet.breed')) { <small class="error">Selecciona la raza</small> }
+              </label>
+            </div>
+
+            <div class="row">
+              <div class="field" role="radiogroup" aria-labelledby="sex-label">
+                <span id="sex-label">Sexo:</span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" formControlName="sex" value="MALE" /> Macho</label>
+                  <label class="choice"><input type="radio" formControlName="sex" value="FEMALE" /> Hembra</label>
+                </div>
+                @if (invalid('pet.sex')) { <small class="error">Selecciona el sexo</small> }
+              </div>
+              <label class="field">
+                <span>Edad:</span>
+                <select formControlName="ageRange" [class.invalid]="invalid('pet.ageRange')">
+                  <option value="" disabled>Selecciona</option>
+                  @for (age of clinic()?.ageRanges; track age) { <option [value]="age">{{ age }}</option> }
+                </select>
+                @if (invalid('pet.ageRange')) { <small class="error">Selecciona la edad</small> }
+              </label>
+            </div>
+
+            <div class="field" role="radiogroup" aria-labelledby="vaccines-label">
+              <span id="vaccines-label" class="plain">¿Tiene sus vacunas al día?</span>
+              <div class="choices">
+                <label class="choice"><input type="radio" formControlName="vaccinated" value="yes" /> Sí</label>
+                <label class="choice"><input type="radio" formControlName="vaccinated" value="no" /> No</label>
+              </div>
+              @if (invalid('pet.vaccinated')) { <small class="error">Indica si tiene sus vacunas al día</small> }
+            </div>
+          </fieldset>
+
+          <fieldset formGroupName="owner">
+            <legend>Datos del dueño</legend>
+
+            <label class="field">
+              <span>Nombre completo:</span>
+              <input formControlName="fullName" placeholder="Ingresar nombre completo" autocomplete="name" [class.invalid]="invalid('owner.fullName')" />
+              @if (invalid('owner.fullName')) { <small class="error">Ingresa tu nombre completo</small> }
+            </label>
+
+            <div class="row owner-row">
+              <label class="field">
+                <span>Email:</span>
+                <input type="email" formControlName="email" placeholder="ejemplo@email.com" autocomplete="email" [class.invalid]="invalid('owner.email')" />
+                @if (invalid('owner.email')) { <small class="error">Ingresa un email válido</small> }
+              </label>
+              <label class="field">
+                <span>Teléfono:</span>
+                <input type="tel" formControlName="phone" placeholder="+57" autocomplete="tel" [class.invalid]="invalid('owner.phone')" />
+                @if (invalid('owner.phone')) { <small class="error">Ingresa un teléfono válido</small> }
+              </label>
+            </div>
+
+            @if (slot(); as selected) {
+              <div class="summary">
+                <app-icon name="calendar-check" [size]="20" />
+                <p>
+                  <strong>{{ asDate(selected.date) | date: 'EEEE d MMMM' }}</strong> a las <strong>{{ selected.time }} Hrs.</strong>
+                  con <strong>{{ vet()?.fullName }}</strong>
+                </p>
+              </div>
+            }
+          </fieldset>
+        </div>
+      </form>
+    }
+  }
+
+  @if (error()) {
+    <p class="alert" role="alert">{{ error() }}</p>
+  }
+
+  <div class="actions">
+    <button type="button" class="btn btn-outline" (click)="back()">Volver</button>
+    @if (step() < 3) {
+      <button type="button" class="btn btn-primary" [disabled]="!canContinue()" (click)="next()">Siguiente</button>
+    } @else {
+      <button type="submit" form="booking-form" class="btn btn-primary" [disabled]="submitting()">
+        {{ submitting() ? 'Reservando…' : 'Finalizar' }}
+      </button>
+    }
+  </div>
+</main>
+
+<!-- Shown whenever there is nothing left to book at the current step -->
+<ng-template #noAvailability let-title="title" let-text="text" let-action="action">
+  <div class="notice" role="alert">
+    <span class="notice-icon"><app-icon name="calendar-x" [size]="24" /></span>
+    <div>
+      <h3>{{ title }}</h3>
+      <p>{{ text }}</p>
+      <div class="notice-actions">
+        @if (action === 'pet') {
+          <button type="button" class="btn btn-primary btn-sm" (click)="goToStep(0)">Elegir otro tipo de mascota</button>
+        } @else if (action === 'vet') {
+          <button type="button" class="btn btn-primary btn-sm" (click)="goToStep(1)">Elegir otro profesional</button>
+        }
+        <a routerLink="/contacto" class="btn btn-outline btn-sm">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</ng-template>
