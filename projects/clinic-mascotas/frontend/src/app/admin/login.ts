@@ -2,8 +2,10 @@ import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angu
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
+import { environment } from '../../environments/environment';
 import { errorMessage } from '../core/api.service';
 import { AuthService } from '../core/auth';
+import { DEMO_ADMIN } from '../core/demo-backend';
 import { Icon } from '../shared/icon';
 import { Logo } from '../shared/logo';
 
@@ -17,6 +19,14 @@ import { Logo } from '../shared/logo';
         <app-logo [height]="30" />
         <h1>Acceso del personal</h1>
         <p class="muted">Ingresa para gestionar reservas, veterinarios y mensajes.</p>
+
+        @if (demo) {
+          <div class="demo-hint">
+            <strong>Cuenta de demostración</strong>
+            <span>{{ demoAdmin.email }} · {{ demoAdmin.password }}</span>
+            <button type="button" class="btn btn-outline btn-sm" (click)="useDemoAccount()">Usar cuenta demo</button>
+          </div>
+        }
 
         <label class="field">
           <span>Correo</span>
@@ -43,6 +53,8 @@ import { Logo } from '../shared/logo';
     h1 { font-size: 1.8rem; margin: 26px 0 4px; }
     p.muted { margin: 0 0 24px; }
     .btn { margin-top: 6px; }
+    .demo-hint { display: grid; gap: 4px; justify-items: start; margin-bottom: 20px; padding: 12px 14px; border-radius: 10px; background: var(--lavender); font-size: .9rem; }
+    .demo-hint .btn { margin-top: 6px; }
     .alert { margin: 0 0 12px; padding: 10px 14px; border-radius: 8px; background: #fdecec; color: #a4161a; }
     .back { justify-self: center; margin-top: 20px; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; }
     .back:hover { color: var(--purple); }
@@ -50,6 +62,9 @@ import { Logo } from '../shared/logo';
 })
 export class Login {
   readonly returnUrl = input<string>();
+
+  protected readonly demo = environment.demo;
+  protected readonly demoAdmin = DEMO_ADMIN;
 
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
@@ -65,6 +80,11 @@ export class Login {
     if (this.auth.isLoggedIn()) {
       this.router.navigate(['/admin']);
     }
+  }
+
+  protected useDemoAccount(): void {
+    this.form.setValue({ ...DEMO_ADMIN });
+    this.submit();
   }
 
   protected submit(): void {

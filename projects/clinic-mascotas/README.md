@@ -4,6 +4,8 @@ Full-stack veterinary clinic web app: clients book appointments online through a
 
 Designed in Adobe XD and built end-to-end by **Harrys Moreno Córdoba** — Software Developer + UX/UI.
 
+> **Try it:** the demo build in the portfolio ([`/clinic-mascotas`](../../clinic-mascotas)) runs the same app with an in-browser backend (`npm run build:demo`), so it works on static hosting. Admin demo account: `admin@clinicmascotas.co` / `demo1234`.
+
 | Stack | |
 |---|---|
 | **Frontend** | Angular 21 (standalone components, signals, `rxResource`, reactive forms, lazy routes), SCSS |
